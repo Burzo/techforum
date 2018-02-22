@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} My Comments {% endblock title %}
+
+{% block content %}
+
+{% for key in comments %}
+
+<div>
+    {% for i in objave %}
+        {% if i.naslov == key %}
+        <h2>In topic <a href="/objava/{{i.key.id()}}">{{ key }}</a> you commented:</h2>
+        {% endif %}
+    {% endfor%}
+    <ul class="list-group">
+        {% for value in comments[key] %}
+        <li class="list-group-item" style="background: rgba(178, 209, 228, 0.664)">{{value.vsebina}}</li>
+        <span><small>Time: {{value.cas_objave}}</small></span>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endfor %}
+
+
+
+{% endblock content %}

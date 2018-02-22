@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Main page {% endblock title %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+    <h1>NimamPojma Teh Forum</h1>
+    <p>Nimam pojma kaj nej napišem sm notr, zmankal domišljije k sm glih iz šihta!</p>
+</div>
+
+<table class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>Objave</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in objave %}
+            {% if not i.cas_izbrisa  %}
+            <tr>
+                <td><a href="/objava/{{i.key.id()}}">{{i.naslov}}</a></td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}

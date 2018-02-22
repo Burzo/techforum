@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %} Topic Details {% endblock title %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Naslov: {{naslov}}</h2>
+    <div class="panel panel-default">
+        <label for="vsebina">Vsebina:   </label>
+        <div id="vsebina"class="panel-heading">{{vsebina}}</div>
+        <div class="panel-body">Čas Objave: {{cas_objave}}</div>
+    </div>
+</div>
+
+<div>
+    <form method="post" action="/objava/delete/{{ id }}">
+        <button class="btn btn-warning" type="submit">Izbriši objavo</button>
+    </form>
+</div>
+
+<h2>Komentarji</h2>
+
+<div>
+    {% for komentar in komentarji %}
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4" style="background: rgb(196, 212, 218)">
+            <b>{{ komentar.uporabnikEmail }}</b> je napisal:
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8" style="background: rgb(143, 206, 185)">
+            {{ komentar.vsebina }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<h2>Dodaj komentar</h2>
+<div class="row">
+    <div class="col-md-6">
+        <form method="post">
+            <div class="form-group">
+                <label>Vsebina</label>
+                <textarea name="text" class="form-control" rows="6" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock content %}
